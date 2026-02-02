@@ -1,0 +1,22 @@
+import dotenv from "dotenv";
+import { userRouter } from "./modules/user/user.route";
+import express from "express";
+import app from "./app";
+
+dotenv.config();
+app.use(express.json());
+
+const PORT = process.env.PORT || 5000;
+
+app.get("/", (req, res) => {
+  res.json({
+    project: "super-notes-backend",
+    Instruction: "Please read the doc or visit the repo.",
+  });
+});
+
+app.use("/api/v1/auth", userRouter);
+
+app.listen(PORT, () => {
+  console.log(`Server is listening on port ${PORT}`);
+});
