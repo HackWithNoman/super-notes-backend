@@ -8,6 +8,7 @@ app.use(express.json());
 
 const PORT = process.env.PORT || 5000;
 
+// Root route
 app.get("/", (req, res) => {
   res.json({
     project: "super-notes-backend",
@@ -15,6 +16,7 @@ app.get("/", (req, res) => {
   });
 });
 
+// Auth Routes
 app.use("/api/v1/auth", userRouter);
 
 app.listen(PORT, () => {

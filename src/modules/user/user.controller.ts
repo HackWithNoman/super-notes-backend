@@ -3,7 +3,6 @@ import { userService } from "./user.service";
 
 const register: RequestHandler = async (req, res) => {
   const payload = req.body;
-  console.log(payload);
   try {
     const user = await userService.register(payload);
     res.status(201).json({
