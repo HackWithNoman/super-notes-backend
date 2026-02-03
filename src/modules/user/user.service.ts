@@ -15,6 +15,17 @@ const register = async (payload: any) => {
   return user;
 };
 
+const login = async (payload: any) => {
+  const user = await prisma.user.findUnique({
+    where: {
+      email: payload.email,
+    },
+  });
+
+  return user;
+};
+
 export const userService = {
   register,
+  login,
 };

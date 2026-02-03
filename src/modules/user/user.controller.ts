@@ -17,6 +17,22 @@ const register: RequestHandler = async (req, res) => {
   }
 };
 
+const login: RequestHandler = async (req, res) => {
+  try {
+    const user = await userService.login(req.body);
+    res.status(201).json({
+      message: "User found!",
+      user,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "User not found!",
+      Error: error,
+    });
+  }
+};
+
 export const userController = {
   register,
+  login,
 };
