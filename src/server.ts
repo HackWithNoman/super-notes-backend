@@ -3,6 +3,7 @@ import { userRouter } from "./modules/user/user.route";
 import express from "express";
 import app from "./app";
 import { notesRouter } from "./modules/notes/notes.route";
+import authMiddleware from "./middlewares/authMiddleware";
 
 dotenv.config();
 app.use(express.json());
@@ -21,7 +22,7 @@ app.get("/", (req, res) => {
 app.use("/api/v1/auth", userRouter);
 
 // Notes Routes
-app.use("/api/v1/notes", notesRouter);
+app.use("/api/v1/notes", authMiddleware, notesRouter);
 
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
