@@ -39,7 +39,7 @@ const login = async (payload: { email: string; password_hash: string }) => {
 
   return {
     message: "Login successful",
-    token,
+    token: token,
     user: { id: user.id, email: user.email },
   };
 };
