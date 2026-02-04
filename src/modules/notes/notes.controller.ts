@@ -25,8 +25,10 @@ const createNote: RequestHandler = async (req, res) => {
 };
 
 const getNote: RequestHandler = async (req, res) => {
+  const userId = req.user.id;
+
   try {
-    const note = await notesService.getNote();
+    const note = await notesService.getNote(userId);
 
     res.status(200).json({
       message: "Success",

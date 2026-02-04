@@ -8,8 +8,12 @@ const createNote = async (payload: any) => {
   return note;
 };
 
-const getNote = async () => {
-  const notes = await prisma.notes.findMany();
+const getNote = async (userId: number) => {
+  const notes = await prisma.notes.findMany({
+    where: {
+      user_id: userId,
+    },
+  });
 
   return notes;
 };
