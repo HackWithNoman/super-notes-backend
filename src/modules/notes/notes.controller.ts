@@ -19,6 +19,23 @@ const createNote: RequestHandler = async (req, res) => {
   }
 };
 
+const getNote: RequestHandler = async (req, res) => {
+  try {
+    const note = await notesService.getNote();
+
+    res.status(200).json({
+      message: "Success",
+      note: note,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Faild",
+      error: error,
+    });
+  }
+};
+
 export const notesController = {
   createNote,
+  getNote,
 };

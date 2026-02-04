@@ -8,6 +8,13 @@ const createNote = async (payload: any) => {
   return note;
 };
 
+const getNote = async () => {
+  const notes = await prisma.notes.findMany();
+
+  return notes;
+};
+
 export const notesService = {
   createNote,
+  getNote,
 };
