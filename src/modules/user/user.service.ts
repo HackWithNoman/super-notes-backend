@@ -35,7 +35,15 @@ const login = async (payload: { email: string; password_hash: string }) => {
     throw new Error("JWT_SECRET is not defined in environment variables");
   }
 
-  const token = jwt.sign({ email: user.email }, secret, { expiresIn: "1h" });
+  const token = jwt.sign(
+    {
+      id: user.id,
+      email: user.email,
+      role: user.role,
+    },
+    secret,
+    { expiresIn: "3h" },
+  );
 
   return {
     message: "Login successful",
