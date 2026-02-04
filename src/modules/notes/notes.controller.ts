@@ -42,7 +42,24 @@ const getNote: RequestHandler = async (req, res) => {
   }
 };
 
+const deleteNote: RequestHandler = async (req, res) => {
+  const noteId = Number(req.params.id);
+  const userId = req.user.id;
+
+  try {
+    const note = await notesService.deleteNote(noteId, userId);
+
+    res.status(200).json({
+      message: "Note deleted successfully",
+      note: note,
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error });
+  }
+};
+
 export const notesController = {
   createNote,
   getNote,
+  deleteNote,
 };
